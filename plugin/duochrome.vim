@@ -5,7 +5,7 @@
 
 let s:save_cpo = &cpo
 set cpo&vim
-if exists("g:loaded_duochrome") | finish | endif
+if exists('g:loaded_duochrome') | finish | endif
 let g:loaded_duochrome = 1
 
 " ...................................................................... Session
@@ -19,6 +19,15 @@ let g:readability          = !empty(glob('~/.session/vim:readability'))  " fonts
 let g:trace                = !empty(glob('~/.session/vim:trace'))        " debug
 
 if &diff | let g:duochrome_cursorline = g:duochrome_cursorline ? g:duochrome_cursorline : 2 | endif  " underline default
+
+" .......................................................................... Map
+if !exists('g:duochrome_map') | let g:duochrome_map = 1 | endif  " key mapping (0) user assigned (1) defaults
+
+function! s:m(map)
+  if g:duochrome_map | execute a:map | endif
+endfunction
+
+command! -nargs=? M call <SID>m(<f-args>) 
 
 " Filetype _____________________________________________________________________
 
@@ -34,7 +43,7 @@ endfunction
 
 " .................................................................... Protected
 function! s:fzfBuffer()
-  if exists("g:fzf#vim#buffers") | return g:fzf#vim#buffers != {} " fzf trap
+  if exists('g:fzf#vim#buffers') | return g:fzf#vim#buffers != {} " fzf trap
   else                           | return 0
   endif
 endfunction
@@ -56,7 +65,7 @@ endfunction
 " System _______________________________________________________________________
 
 " ........................................................................ Debug
-nnoremap <silent><S-F10> :let g:trace = !g:trace<CR>
+M nnoremap <silent><S-F10> :let g:trace = !g:trace<CR>
 
 " .................................................................. Debug trace
 command! -nargs=1 Trace call lib#trace(<f-args>)
@@ -77,9 +86,9 @@ augroup gui | autocmd! | augroup END
 " ................................................................... Toggle gui
 command! -bar ToggleGui silent! call gui#ToggleGui()
 
-nnoremap <silent><S-F12>      :ToggleGui<CR>
-inoremap <silent><S-F12> <C-o>:ToggleGui<CR>
-vnoremap <silent><S-F12> :<C-u>ToggleGui<CR>
+M nnoremap <silent><S-F12>      :ToggleGui<CR>
+M inoremap <silent><S-F12> <C-o>:ToggleGui<CR>
+M vnoremap <silent><S-F12> :<C-u>ToggleGui<CR>
 
 " ................................................................... Redraw gui
 command! -bar RedrawGui silent! ToggleGui | WaitFor 50m \| ToggleGui
@@ -88,9 +97,9 @@ if has('gui_running')  " initial refresh to fill window
   autocmd gui VimEnter * RedrawGui
 endif
 
-nnoremap <silent><F12>      :RedrawGui<CR>
-inoremap <silent><F12> <C-o>:RedrawGui<CR>
-vnoremap <silent><F12> :<C-u>RedrawGui<CR>
+M nnoremap <silent><F12>      :RedrawGui<CR>
+M inoremap <silent><F12> <C-o>:RedrawGui<CR>
+M vnoremap <silent><F12> :<C-u>RedrawGui<CR>
 
 " .................................................................... Scrolling
 command! ScrollOffset silent! call gui#ScrollOffset()
@@ -104,21 +113,21 @@ autocmd gui CursorHold * echo
 " ................................................................... Cursorline
 command! ToggleCursorline silent! call gui#ToggleCursorline()
 
-nmap <silent><F8>      :ToggleCursorline<CR>
-imap <silent><F8> <C-o>:ToggleCursorline<CR>
+M nmap <silent><F8>      :ToggleCursorline<CR>
+M imap <silent><F8> <C-o>:ToggleCursorline<CR>
 
 " ............................................................... Column margins
 command! ToggleColumn silent! call gui#ToggleColumn()
 
 set colorcolumn=0  " highlight column
-nmap <silent><Bar> :ToggleColumn<CR>
+M nmap <silent><Bar> :ToggleColumn<CR>
 
 " .......................................................... Line wrap highlight
 command! ShowBreak silent! call gui#ShowBreak()
 command! -nargs=? ToggleBreak silent! call gui#ToggleBreak(<f-args>)
 
-nmap <silent><S-F8>      :ToggleBreak<CR>
-imap <silent><S-F8> <C-o>:ToggleBreak<CR>
+M nmap <silent><S-F8>      :ToggleBreak<CR>
+M imap <silent><S-F8> <C-o>:ToggleBreak<CR>
 
 " ................................................................. Line numbers
 set number
@@ -147,8 +156,8 @@ autocmd theme VimEnter,VimResized,FocusGained * WaitFor | Background
 " ................................................................ Switch colour
 command! LiteSwitch silent! call theme#LiteSwitch()
 
-nmap <silent><F9>      :LiteSwitch<CR>
-imap <silent><F9> <C-o>:LiteSwitch<CR>
+M nmap <silent><F9>      :LiteSwitch<CR>
+M imap <silent><F9> <C-o>:LiteSwitch<CR>
 
 " ................................................................ Single window
 command! StatusLine silent! call theme#StatusLine()
@@ -184,8 +193,8 @@ autocmd ui Syntax <buffer> execute 'set syntax=' . &filetype
 " .................................................................... View mode
 command! -bar ToggleProof silent! call ui#ToggleProof()
 
-nmap <silent><S-F11>      :ToggleProof<CR>
-imap <silent><S-F11> <C-o>:ToggleProof<CR>
+M nmap <silent><S-F11>      :ToggleProof<CR>
+M imap <silent><S-F11> <C-o>:ToggleProof<CR>
 
 if has('gui_running')
   autocmd ui InsertEnter * ToggleProof | SignifyDisable
@@ -196,7 +205,7 @@ endif
 command! ToggleNumber silent! call ui#ToggleNumber()
 
 " toggle relative/line number
-nmap <silent># :ToggleNumber<CR>
+M nmap <silent># :ToggleNumber<CR>
 
 " .............................................................. Show statusline
 command! ShowInfo silent! call ui#ShowInfo()
@@ -204,8 +213,8 @@ command! ShowInfo silent! call ui#ShowInfo()
 " .................................................... Toggle statusline details
 command! -nargs=? -bar ToggleInfo silent! call ui#ToggleInfo(<f-args>)
 
-nmap <silent><F7>        :ToggleInfo<CR>
-imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
+M nmap <silent><F7>        :ToggleInfo<CR>
+M imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
 
 " show info+sleep in balanced diff windows
 autocmd ui VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
@@ -215,12 +224,12 @@ autocmd ui VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=
 " ..................................................................... Filetype
 command! -nargs=1 Filetype silent! call ui#Filetype(<f-args>)
 
-nmap <leader>F :Filetype<Space>
+M nmap <leader>F :Filetype<Space>
 
 " .................................................................... Line wrap
 command! ToggleWrap call ui#ToggleWrap()
 
-nmap <silent><leader><CR> :ToggleWrap<CR>
+M nmap <silent><leader><CR> :ToggleWrap<CR>
 
 " Screen _______________________________________________________________________
 
@@ -233,8 +242,8 @@ autocmd ui VimEnter,BufWinEnter * Layout
 " ...................................................................... Refresh
 command! Refresh silent! call ui#Refresh()
 
-nmap <silent><F11>      :Refresh<CR>
-imap <silent><F11> <C-o>:Refresh<CR>
+M nmap <silent><F11>      :Refresh<CR>
+M imap <silent><F11> <C-o>:Refresh<CR>
 
 " .............................................................. Balance margins
 command! Margins silent! call ui#Margins()
@@ -243,8 +252,8 @@ command! Margins silent! call ui#Margins()
 command! -nargs=1 Font silent! call ui#Font(<f-args>)
 
 " prose font is by (writing preference) default set 1px larger than code font
-nmap <silent><S-F9>      :Font !g:fonttype<CR>
-imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
+M nmap <silent><S-F9>      :Font !g:fonttype<CR>
+M imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
 
 " Statusline ___________________________________________________________________
 
@@ -268,14 +277,14 @@ endif
 let g:detail = 0  " default expanded detail (0) tag (1) atom, see F7 map
 
 " toggle tag / line details
-nmap <silent><S-F7>      :let g:detail = !g:detail<CR>
-imap <silent><S-F7> <C-o>:let g:detail = !g:detail<CR>
+M nmap <silent><S-F7>      :let g:detail = !g:detail<CR>
+M imap <silent><S-F7> <C-o>:let g:detail = !g:detail<CR>
 
 " .............................................................. Column position
 let g:show_column = 0  " statusline current column
 
 " trigger autocmd to flash column position (does not work for BOF)
-nnoremap <silent><C-c> hl
+M nnoremap <silent><C-c> hl
 
 autocmd statusline CursorHold  * let g:show_column = 0
 autocmd statusline CursorMoved * let g:show_column = 1
@@ -283,8 +292,9 @@ autocmd statusline CursorMoved * let g:show_column = 1
 " ................................................................. Syntax group
 command! Atom echo statusline#Atom()
 
-nnoremap <silent><F10> :Atom<CR>
+M nnoremap <silent><F10> :Atom<CR>
 
+delcommand M
 let &cpo = s:save_cpo
 
 " vim: set ft=vim: "

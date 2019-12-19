@@ -41,7 +41,7 @@ endfunction
 
 " .................................................................. Cursor info
 function! Detail()
-  let l:prefix = g:detail ? s:atom() : s:tag()
+  let l:prefix = g:detail ? statusline#Atom() : s:tag()
   return empty(l:prefix) ? s:specialChar() : l:prefix . '  ' . s:specialChar()
 endfunction
 

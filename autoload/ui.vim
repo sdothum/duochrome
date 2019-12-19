@@ -76,7 +76,7 @@ endfunction
 " initial view
 function! ui#Layout()
   Trace ui:Layout()
-  if PluginWindow() || !has("gui_running") | return | endif 
+  if PluginWindow() || !has('gui_running') | return | endif 
   let g:duochrome_markdown = Prose()
   Font Prose()
   ShowBreak
