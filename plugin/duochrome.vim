@@ -3,6 +3,11 @@
 " Config
 " ══════════════════════════════════════════════════════════════════════════════
 
+let s:save_cpo = &cpo
+set cpo&vim
+if exists("g:loaded_duochrome") | finish | endif
+let g:loaded_duochrome = 1
+
 " ...................................................................... Session
 " dynamic settings, see after/plugin/*
 let g:duochrome_cursorline = !empty(glob('~/.session/vim:cursorline'))   " highlight
@@ -47,6 +52,8 @@ endfunction
 function! CommandWindow()
   return expand('%p') == '[Command Line]'
 endfunction
+
+" System _______________________________________________________________________
 
 " ........................................................................ Debug
 nnoremap <silent><S-F10> :let g:trace = !g:trace<CR>
@@ -176,8 +183,6 @@ autocmd ui Syntax <buffer> execute 'set syntax=' . &filetype
 " refresh highlighting on arm
 " autocmd ui CursorHold * if !Prose() && !&diff && !empty(&filetype) | execute 'set filetype=' . &filetype | endif
 
-" UI ___________________________________________________________________________
-
 " Buffer _______________________________________________________________________
 
 " ..................................................................... Filetype
@@ -279,5 +284,7 @@ autocmd statusline CursorMoved * let g:show_column = 1
 command! Atom echo statusline#Atom()
 
 nnoremap <silent><F10> :Atom<CR>
+
+let &cpo = s:save_cpo
 
 " vim: set ft=vim: .vimrc
