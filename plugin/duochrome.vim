@@ -95,6 +95,10 @@ vnoremap <silent><F12> :<C-u>RedrawGui<CR>
 " .................................................................... Scrolling
 command! ScrollOffset silent! call gui#ScrollOffset()
 
+" ..................................................................... Messages
+" clear messages after awhile to keep screen clean and distraction free!
+autocmd gui CursorHold * echo
+
 " Look _________________________________________________________________________
 
 " ................................................................... Cursorline
@@ -121,7 +125,7 @@ set number
 set numberwidth=10
 set relativenumber
 
-" The look _____________________________________________________________________
+" Theme ________________________________________________________________________
 
 augroup theme | autocmd! | augroup END
 
@@ -157,22 +161,14 @@ let g:active = 0   " active window tag
 autocmd theme WinEnter,TerminalOpen,BufWinEnter,VimEnter * let g:active = g:active + 1 | let w:tagged = g:active
 autocmd theme WinEnter,TerminalOpen                      * SplitColors
 
-" Fonts ________________________________________________________________________
+" Text _________________________________________________________________________
 
 augroup ui | autocmd! | augroup END
 
-" ................................................................. Code / Prose
+" ......................................................................... Font
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
 let s:mono = g:mono ? '-mono' : ''                           " font name extension
 let g:font = ['Iosevka' . s:mono, 'Iosevka-proof' . s:mono]  " family [code, prose]
-
-" Display ______________________________________________________________________
-
-" ..................................................................... Messages
-" clear messages after awhile to keep screen clean and distraction free!
-autocmd ui CursorHold * echo
-
-" Highlighting _________________________________________________________________
 
 " .......................................................... Syntax highlighting
 set omnifunc=syntaxcomplete#Complete
@@ -183,12 +179,7 @@ autocmd ui Syntax <buffer> execute 'set syntax=' . &filetype
 " refresh highlighting on arm
 " autocmd ui CursorHold * if !Prose() && !&diff && !empty(&filetype) | execute 'set filetype=' . &filetype | endif
 
-" Buffer _______________________________________________________________________
-
-" ..................................................................... Filetype
-command! -nargs=1 Filetype silent! call ui#Filetype(<f-args>)
-
-nmap <leader>F :Filetype<Space>
+" Distraction free mode ________________________________________________________
 
 " .................................................................... View mode
 command! -bar ToggleProof silent! call ui#ToggleProof()
@@ -207,10 +198,31 @@ command! ToggleNumber silent! call ui#ToggleNumber()
 " toggle relative/line number
 nmap <silent># :ToggleNumber<CR>
 
+" .............................................................. Show statusline
+command! ShowInfo silent! call ui#ShowInfo()
+
+" .................................................... Toggle statusline details
+command! -nargs=? -bar ToggleInfo silent! call ui#ToggleInfo(<f-args>)
+
+nmap <silent><F7>        :ToggleInfo<CR>
+imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
+
+" show info+sleep in balanced diff windows
+autocmd ui VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
+
+" Format _______________________________________________________________________
+
+" ..................................................................... Filetype
+command! -nargs=1 Filetype silent! call ui#Filetype(<f-args>)
+
+nmap <leader>F :Filetype<Space>
+
 " .................................................................... Line wrap
 command! ToggleWrap call ui#ToggleWrap()
 
 nmap <silent><leader><CR> :ToggleWrap<CR>
+
+" Screen _______________________________________________________________________
 
 " ............................................................... Screen display
 command! Layout silent! call ui#Layout()
@@ -218,7 +230,7 @@ command! Layout silent! call ui#Layout()
 " intial view mode: source code or prose, plugin windows inherit current theme (avoids thrashing)
 autocmd ui VimEnter,BufWinEnter * Layout
 
-" ....................................................................... Redraw
+" ...................................................................... Refresh
 command! Refresh silent! call ui#Refresh()
 
 nmap <silent><F11>      :Refresh<CR>
@@ -234,19 +246,7 @@ command! -nargs=1 Font silent! call ui#Font(<f-args>)
 nmap <silent><S-F9>      :Font !g:fonttype<CR>
 imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
 
-" .............................................................. Show statusline
-command! ShowInfo silent! call ui#ShowInfo()
-
-" .................................................... Toggle statusline details
-command! -nargs=? -bar ToggleInfo silent! call ui#ToggleInfo(<f-args>)
-
-nmap <silent><F7>        :ToggleInfo<CR>
-imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
-
-" show info+sleep in balanced diff windows
-autocmd ui VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
-
-" Format _______________________________________________________________________
+" Statusline ___________________________________________________________________
 
 augroup statusline | autocmd! | augroup END
 
@@ -264,7 +264,7 @@ elseif g:mono      | let g:icon = ['', '', '', '', '']  " nerd-fo
 else               | let g:icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
 endif
 
-" ............................................................. Expanded details
+" .................................................................. Information
 let g:detail = 0  " default expanded detail (0) tag (1) atom, see F7 map
 
 " toggle tag / line details
@@ -287,4 +287,4 @@ nnoremap <silent><F10> :Atom<CR>
 
 let &cpo = s:save_cpo
 
-" vim: set ft=vim: .vimrc
+" vim: set ft=vim: "

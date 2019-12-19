@@ -12,7 +12,7 @@ function! statusline#Atom()
 endfunction
 
 function! s:tag()
-  return tagbar#Currenttag('%s', '')
+  return tagbar#currenttag('%s', '')
 endfunction
 
 " ............................................................ Special Character

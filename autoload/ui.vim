@@ -3,15 +3,6 @@
 " User Interface
 " ══════════════════════════════════════════════════════════════════════════════
 
-" Buffer _______________________________________________________________________
-
-" ..................................................................... Filetype
-" set corresponding ui for filetye
-function! ui#Filetype(ft)
-  execute 'setfiletype ' . a:ft
-  Layout  " respect ui
-endfunction
-
 " Distraction free mode ________________________________________________________
 
 " .................................................................. Insert mode
@@ -36,7 +27,33 @@ function! ui#ToggleNumber()
   Background
 endfunction
 
+" .............................................................. Show statusline
+let s:expanded = 0  " statusline state (0) dfm (1) expanded
+
+function! ui#ShowInfo()
+  Trace ui:ShowInfo()
+  execute 'set statusline=' . statusline#Statusline(s:expanded)
+  StatusLine
+endfunction
+
+" .................................................... Toggle statusline details
+function! ui#ToggleInfo(...)
+  Trace ui:ToggleInfo
+  if a:0 && a:1 | return | endif  " prose insert mode is always dfm
+  let l:col = col('.')
+  let s:expanded = !s:expanded
+  ShowInfo
+  execute 'normal! ' . l:col . '|'
+endfunction
+
 " Format _______________________________________________________________________
+
+" ..................................................................... Filetype
+" set corresponding ui for filetye
+function! ui#Filetype(ft)
+  execute 'setfiletype ' . a:ft
+  Layout  " respect ui
+endfunction
 
 " .................................................................... Line wrap
 function! ui#ToggleWrap()
@@ -88,7 +105,7 @@ function! ui#Margins()
   endif 
 endfunction
 
-" ..................................................................... Set font
+" ................................................................ Set font size
 let g:fonttype = -1  " current font (0) source (1) prose, force setting
 
 " adjust font sizes for various gpu's/displays, liteDFM offsets to fit screens
@@ -100,31 +117,11 @@ function! ui#Font(type)
   if g:fonttype != l:type | let g:fonttype = l:type
     let l:size = system('fontsize')
     let l:size = l:type ? l:size + 1 : l:size + g:readability
+    " current vim release causes prompt on font change first time around (..?)
     execute 'set guifont=' . (Prose() ? g:font[1] : g:font[0]) . '\ ' . l:size
     if !g:fonttype | RedrawGui | endif  " refresh to window fill on small font
     set laststatus=2                    " turn on statusline
   endif
-endfunction
-
-" Statusline ___________________________________________________________________
-
-" .............................................................. Show statusline
-let s:expanded = 0  " statusline state (0) dfm (1) expanded
-
-function! ui#ShowInfo()
-  Trace ui:ShowInfo()
-  execute 'set statusline=' . statusline#Statusline(s:expanded)
-  StatusLine
-endfunction
-
-" ............................................................ Toggle statusline
-function! ui#ToggleInfo(...)
-  Trace ui:ToggleInfo
-  if a:0 && a:1 | return | endif  " prose insert mode is always dfm
-  let l:col = col('.')
-  let s:expanded = !s:expanded
-  ShowInfo
-  execute 'normal! ' . l:col . '|'
 endfunction
 
 " ui.vim
