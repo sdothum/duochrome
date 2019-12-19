@@ -27,6 +27,7 @@ function! s:m(map)
   if g:duochrome_map | execute a:map | endif
 endfunction
 
+" temporary mapping macro
 command! -nargs=? M call <SID>m(<f-args>) 
 
 " Filetype _____________________________________________________________________
@@ -295,6 +296,7 @@ command! Atom echo statusline#Atom()
 
 M nnoremap <silent><F10> :Atom<CR>
 
+" cleanup
 delcommand M
 let &cpo = s:save_cpo
 
