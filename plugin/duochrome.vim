@@ -176,8 +176,9 @@ augroup ui | autocmd! | augroup END
 
 " ......................................................................... Font
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
-let s:mono = g:mono ? '-mono' : ''                           " font name extension
-let g:font = ['Iosevka' . s:mono, 'Iosevka-proof' . s:mono]  " family [code, prose]
+let g:font = empty(glob('~/.session/vim:font')) ? 'Iosevka' : system('cat ~/.session/vim:font')
+let s:mono = g:mono ? '-mono' : ''                          " font name extension
+let g:font = [g:font . s:mono, g:font . '-proof' . s:mono]  " family [code, prose]
 
 " .......................................................... Syntax highlighting
 set omnifunc=syntaxcomplete#Complete
