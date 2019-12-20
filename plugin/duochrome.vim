@@ -3,10 +3,10 @@
 " Config
 " ══════════════════════════════════════════════════════════════════════════════
 
-let s:save_cpo = &cpo
-set cpo&vim
 if exists('g:loaded_duochrome') | finish | endif
 let g:loaded_duochrome = 1
+let s:save_cpo = &cpo
+set cpo&vim
 
 " ...................................................................... Session
 " dynamic settings, see after/plugin/*
