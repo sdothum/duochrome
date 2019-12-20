@@ -58,6 +58,7 @@ if !exists('s:duochrome') | let s:duochrome = 1
   let s:blue_bg                    = { 'gui': '#dde4f2', 'cterm': '153' }  " flatwhite
   let s:green_bg                   = { 'gui': '#525643', 'cterm': '058' }  " flatwhite
   let s:orange_bg                  = { 'gui': '#f7e0c3', 'cterm': '223' }  " flatwhite
+  let s:teal_bg                    = { 'gui': '#d2ebe3', 'cterm': '223' }  " flatwhite
   let s:iawriter                   = { 'gui': '#20fccf', 'cterm': '51'  }  " ia writer cursor
 endif
 
@@ -102,7 +103,7 @@ if s:background != &background | let s:background = &background
   let s:column           = s:b(s:orange_bg,     s:light_black)
   let s:gutter           = s:b(s:light_blue,    s:dark_blue)
   let s:statusline       = s:b(s:subtle_white,  s:subtle_black)
-  let s:spell            = s:b(s:orange_bg,     s:subtle_black)
+  let s:spell            = s:b(s:teal_bg,       s:subtle_black)
   let s:warning          = s:b(s:light_yellow,  s:dark_yellow)
   " export notational-fzf-vim-duochrome path colors
   if exists('g:nv_search_paths')
