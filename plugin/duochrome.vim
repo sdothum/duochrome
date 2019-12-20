@@ -8,9 +8,13 @@ let g:loaded_duochrome = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+" eEEetetet eteE
+" ──────────────────────────────────────────────────────────────────────────────
+
 " ...................................................................... Session
 " dynamic settings, see after/plugin/*
 if !exists('g:duochrome_cursorline') | let g:duochrome_cursorline = !empty(glob('~/.session/vim:cursorline')) | endif  " highlight
+" ──────────────────────────────────
 let g:duochrome_cursorline = !empty(glob('~/.session/vim:underline')) ? 2 : g:duochrome_cursorline
 let g:cursorword           = !empty(glob('~/.session/vim:cursorword'))   " highlighting
 let g:dark                 = !empty(glob('~/.session/vim:dark'))         " background
@@ -22,6 +26,7 @@ if &diff | let g:duochrome_cursorline = g:duochrome_cursorline ? g:duochrome_cur
 
 " .......................................................................... Map
 if !exists('g:duochrome_map') | let g:duochrome_map = 1 | endif  " key mapping (0) user assigned (1) defaults
+" ───────────────────────────
 
 function! s:m(map)
   if g:duochrome_map | execute a:map | endif
@@ -178,6 +183,7 @@ augroup ui | autocmd! | augroup END
 " ......................................................................... Font
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
 if !exists('g:duochrom_font')
+" ───────────────────────────
   let s:mono          = g:mono ? '-mono' : ''                                " font name extension
   let g:duochrom_font = ['Iosevka' . s:mono, 'Iosevka' . '-proof' . s:mono]  " family [code, prose]
 endif
@@ -272,6 +278,7 @@ let g:pad = ['      ', '     ']  " statusline padding [inner, outer]
 " ....................................................................... Glyphs
 " buffer g:duochrome_icon [0] unmodified [1] unmodifiable [2] modified [3] inactive [4] insert mode
 if !exists('g:duochrome_icon')
+" ────────────────────────────
   if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', 'x', '^']  " console font
   elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
   else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
