@@ -276,7 +276,7 @@ let g:pad = ['      ', '     ']  " statusline padding [inner, outer]
 "             123456    12345
 
 " ....................................................................... Glyphs
-" buffer g:duochrome_icon [0] unmodified [1] unmodifiable [2] modified [3] inactive [4] insert mode
+" buffer g:duochrome_icon [0] unmodified (normal mode) [1] unmodifiable [2] modified [3] inactive (window) [4] insert mode
 if !exists('g:duochrome_icon')
 " ────────────────────────────
   if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', 'x', '^']  " console font
