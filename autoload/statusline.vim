@@ -99,7 +99,7 @@ function! s:attn()
 endfunction
 
 function! UnModified(show)
-  return (expand('%t') =~ 'NrrwRgn' || w:tagged == g:active) ? (&modifiable ? (&modified ? g:icon[2] : a:show ? (g:duochrome_insert ? g:icon[4] : g:icon[0]) : '') : g:icon[1]) : g:icon[3]
+  return (expand('%t') =~ 'NrrwRgn' || w:tagged == g:active) ? (&modifiable ? (&modified ? g:duochrome_icon[2] : a:show ? (g:duochrome_insert ? g:duochrome_icon[4] : g:duochrome_icon[0]) : '') : g:duochrome_icon[1]) : g:duochrome_icon[3]
 endfunction
 
 " ......................................................................... Info

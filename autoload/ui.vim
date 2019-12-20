@@ -118,7 +118,7 @@ function! ui#Font(type)
     let l:size = system('fontsize')
     let l:size = l:type ? l:size + 1 : l:size + g:readability
     " current vim release causes prompt on font change first time around (..?)
-    execute 'set guifont=' . (Prose() ? g:font[1] : g:font[0]) . '\ ' . l:size
+    execute 'set guifont=' . (Prose() ? g:duochrom_font[1] : g:duochrom_font[0]) . '\ ' . l:size
     if !g:fonttype | RedrawGui | endif  " refresh to window fill on small font
     set laststatus=2                    " turn on statusline
   endif

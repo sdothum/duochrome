@@ -10,7 +10,7 @@ set cpo&vim
 
 " ...................................................................... Session
 " dynamic settings, see after/plugin/*
-let g:duochrome_cursorline = !empty(glob('~/.session/vim:cursorline'))   " highlight
+if !exists('g:duochrome_cursorline') | let g:duochrome_cursorline = !empty(glob('~/.session/vim:cursorline')) | endif  " highlight
 let g:duochrome_cursorline = !empty(glob('~/.session/vim:underline')) ? 2 : g:duochrome_cursorline
 let g:cursorword           = !empty(glob('~/.session/vim:cursorword'))   " highlighting
 let g:dark                 = !empty(glob('~/.session/vim:dark'))         " background
@@ -177,9 +177,10 @@ augroup ui | autocmd! | augroup END
 
 " ......................................................................... Font
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
-let g:font = empty(glob('~/.session/vim:font')) ? 'Iosevka' : system('cat ~/.session/vim:font')
-let s:mono = g:mono ? '-mono' : ''                          " font name extension
-let g:font = [g:font . s:mono, g:font . '-proof' . s:mono]  " family [code, prose]
+if !exists('g:duochrom_font')
+  let s:mono          = g:mono ? '-mono' : ''                                " font name extension
+  let g:duochrom_font = ['Iosevka' . s:mono, 'Iosevka' . '-proof' . s:mono]  " family [code, prose]
+endif
 
 " .......................................................... Syntax highlighting
 set omnifunc=syntaxcomplete#Complete
@@ -269,10 +270,12 @@ let g:pad = ['      ', '     ']  " statusline padding [inner, outer]
 "             123456    12345
 
 " ....................................................................... Glyphs
-" buffer g:icon [0] unmodified [1] unmodifiable [2] modified [3] inactive [4] insert mode
-if empty($DISPLAY) | let g:icon = ['•', '-', '+', 'x', '^']  " console font
-elseif g:mono      | let g:icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
-else               | let g:icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+" buffer g:duochrome_icon [0] unmodified [1] unmodifiable [2] modified [3] inactive [4] insert mode
+if !exists('g:duochrome_icon')
+  if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', 'x', '^']  " console font
+  elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
+  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+  endif
 endif
 
 " .................................................................. Information
