@@ -57,9 +57,9 @@ if !exists('s:duochrome') | let s:duochrome = 1
   let s:light_yellow               = { 'gui': '#d5b875', 'cterm': '11'  }  " quantum
   " bg colours
   let s:blue_bg                    = { 'gui': '#dde4f2', 'cterm': '153' }  " flatwhite
-  let s:green_bg                   = { 'gui': '#525643', 'cterm': '058' }  " flatwhite
+  let s:green_bg                   = { 'gui': '#525643', 'cterm': '58'  }  " flatwhite
   let s:orange_bg                  = { 'gui': '#f7e0c3', 'cterm': '223' }  " flatwhite
-  let s:teal_bg                    = { 'gui': '#d2ebe3', 'cterm': '223' }  " flatwhite
+  let s:teal_bg                    = { 'gui': '#d2ebe3', 'cterm': '79'  }  " flatwhite
   let s:iawriter                   = { 'gui': '#20fccf', 'cterm': '51'  }  " ia writer cursor
 endif
 
