@@ -107,6 +107,8 @@ M vnoremap <silent><F12> :<C-u>RedrawGui<CR>
 " .................................................................... Scrolling
 command! ScrollOffset silent! call gui#ScrollOffset()
 
+autocmd duochrome BufEnter,WinEnter,WinNew,VimResized * ScrollOffset
+
 " ..................................................................... Messages
 " clear messages after awhile to keep screen clean and distraction free!
 autocmd duochrome CursorHold * echo
@@ -188,7 +190,7 @@ syntax on  " turn on syntax highlighting
 " ftplugin set syntax is overridden by vim runtime Syntax autocmd
 autocmd duochrome Syntax <buffer> execute 'set syntax=' . &filetype
 " refresh highlighting on arm
-" autocmd ui CursorHold * if !Prose() && !&diff && !empty(&filetype) | execute 'set filetype=' . &filetype | endif
+" autocmd duochrome CursorHold * if !Prose() && !&diff && !empty(&filetype) | execute 'set filetype=' . &filetype | endif
 
 " Distraction free mode ________________________________________________________
 
