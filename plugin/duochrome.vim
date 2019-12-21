@@ -8,8 +8,7 @@ let g:loaded_duochrome = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-" eEEetetet eteE
-" ──────────────────────────────────────────────────────────────────────────────
+augroup duochrome | autocmd! | augroup END
 
 " ...................................................................... Session
 " dynamic settings, see after/plugin/*
@@ -87,8 +86,6 @@ command! -nargs=? -bar WaitFor call lib#WaitFor(<f-args>)
 
 " Behaviour ____________________________________________________________________
 
-augroup gui | autocmd! | augroup END
-
 " ................................................................... Toggle gui
 command! -bar ToggleGui silent! call gui#ToggleGui()
 
@@ -100,7 +97,7 @@ M vnoremap <silent><S-F12> :<C-u>ToggleGui<CR>
 command! -bar RedrawGui silent! ToggleGui | WaitFor 50m \| ToggleGui
 
 if has('gui_running')  " initial refresh to fill window
-  autocmd gui VimEnter * RedrawGui
+  autocmd duochrome VimEnter * RedrawGui
 endif
 
 M nnoremap <silent><F12>      :RedrawGui<CR>
@@ -112,7 +109,7 @@ command! ScrollOffset silent! call gui#ScrollOffset()
 
 " ..................................................................... Messages
 " clear messages after awhile to keep screen clean and distraction free!
-autocmd gui CursorHold * echo
+autocmd duochrome CursorHold * echo
 
 " Look _________________________________________________________________________
 
@@ -142,8 +139,6 @@ set relativenumber
 
 " Theme ________________________________________________________________________
 
-augroup theme | autocmd! | augroup END
-
 " .................................................................. Colorscheme
 colorscheme duochrome
 if g:dark              | set background=dark
@@ -153,11 +148,11 @@ endif
 
 command! -nargs=? -bar Background silent! call theme#Background(<f-args>)
 
-autocmd theme InsertEnter * Background
-autocmd theme InsertLeave * Background
+autocmd duochrome InsertEnter * Background
+autocmd duochrome InsertLeave * Background
 
 " wm timing requires FocusGained+sleep with VimResized to consistently set margins, see Background
-autocmd theme VimEnter,VimResized,FocusGained * WaitFor | Background
+autocmd duochrome VimEnter,VimResized,FocusGained * WaitFor | Background
 
 " ................................................................ Switch colour
 command! LiteSwitch silent! call theme#LiteSwitch()
@@ -173,12 +168,10 @@ command! -bar SplitColors silent! call theme#SplitColors()
 
 let g:active = 0   " active window tag
 " for active window highlighting
-autocmd theme WinEnter,TerminalOpen,BufWinEnter,VimEnter * let g:active = g:active + 1 | let w:tagged = g:active
-autocmd theme WinEnter,TerminalOpen                      * SplitColors
+autocmd duochrome WinEnter,TerminalOpen,BufWinEnter,VimEnter * let g:active = g:active + 1 | let w:tagged = g:active
+autocmd duochrome WinEnter,TerminalOpen                      * SplitColors
 
 " Text _________________________________________________________________________
-
-augroup ui | autocmd! | augroup END
 
 " ......................................................................... Font
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
@@ -193,7 +186,7 @@ set omnifunc=syntaxcomplete#Complete
 syntax on  " turn on syntax highlighting
  
 " ftplugin set syntax is overridden by vim runtime Syntax autocmd
-autocmd ui Syntax <buffer> execute 'set syntax=' . &filetype
+autocmd duochrome Syntax <buffer> execute 'set syntax=' . &filetype
 " refresh highlighting on arm
 " autocmd ui CursorHold * if !Prose() && !&diff && !empty(&filetype) | execute 'set filetype=' . &filetype | endif
 
@@ -206,8 +199,8 @@ M nmap <silent><S-F11>      :ToggleProof<CR>
 M imap <silent><S-F11> <C-o>:ToggleProof<CR>
 
 if has('gui_running')
-  autocmd ui InsertEnter * ToggleProof | SignifyDisable
-  autocmd ui InsertLeave * ToggleProof | SignifyEnable
+  autocmd duochrome InsertEnter * ToggleProof | SignifyDisable
+  autocmd duochrome InsertLeave * ToggleProof | SignifyEnable
 endif
 
 " ................................................................. Line numbers
@@ -226,7 +219,7 @@ M nmap <silent><F7>        :ToggleInfo<CR>
 M imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
 
 " show info+sleep in balanced diff windows
-autocmd ui VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
+autocmd duochrome VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
 
 " Format _______________________________________________________________________
 
@@ -246,7 +239,7 @@ M nmap <silent><leader><CR> :ToggleWrap<CR>
 command! Layout silent! call ui#Layout()
 
 " intial view mode: source code or prose, plugin windows inherit current theme (avoids thrashing)
-autocmd ui VimEnter,BufWinEnter * Layout
+autocmd duochrome VimEnter,BufWinEnter * Layout
 
 " ...................................................................... Refresh
 command! Refresh silent! call ui#Refresh()
@@ -265,8 +258,6 @@ M nmap <silent><S-F9>      :Font !g:fonttype<CR>
 M imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
 
 " Statusline ___________________________________________________________________
-
-augroup statusline | autocmd! | augroup END
 
 " ..................................................................... Settings
 set laststatus=2                 " always show status line
@@ -298,8 +289,8 @@ let g:show_column = 0  " statusline current column
 " trigger autocmd to flash column position (does not work for BOF)
 M nnoremap <silent><C-c> hl
 
-autocmd statusline CursorHold  * let g:show_column = 0
-autocmd statusline CursorMoved * let g:show_column = 1
+autocmd duochrome CursorHold  * let g:show_column = 0
+autocmd duochrome CursorMoved * let g:show_column = 1
 
 " ................................................................. Syntax group
 command! Atom echo statusline#Atom()
