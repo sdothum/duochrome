@@ -1,8 +1,10 @@
 # vim-duochrome
 
-more than just a colorscheme (though you can copy the
+more than just a distraction free colorscheme (though you can copy the
 colors/duochrome.vim file to your colors folder for just that), feature
 set works best with Gvim
+
+![DuoChrome](/screenshots/duochrome.jpg)
 
 ## features
 
