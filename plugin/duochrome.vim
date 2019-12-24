@@ -121,6 +121,12 @@ command! ToggleCursorline silent! call gui#ToggleCursorline()
 M nmap <silent><F8>      :ToggleCursorline<CR>
 M imap <silent><F8> <C-o>:ToggleCursorline<CR>
 
+" ................................................................... Cursorword
+command! ToggleCursorword silent! call gui#ToggleCursorword()
+
+M nmap <silent><F5>      :ToggleCursorword<CR>
+M imap <silent><F5> <C-o>:ToggleCursorword<CR>
+
 " ............................................................... Column margins
 command! ToggleColumn silent! call gui#ToggleColumn()
 

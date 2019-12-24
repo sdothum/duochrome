@@ -36,6 +36,14 @@ function! gui#ToggleCursorline()
   Background
 endfunction
 
+" ................................................................... Cursorword
+function! gui#ToggleCursorword()
+  let b:cursorword = !b:cursorword  " new cursor position required to reflect state change
+  if col('.') == col('$') - 1 | normal! h
+  else                        | normal! l
+  endif
+endfunction
+
 " ............................................................... Column margins
 augroup column | autocmd! | augroup END
 

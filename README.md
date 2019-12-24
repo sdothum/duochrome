@@ -66,6 +66,9 @@ free workflow for concentrating on writing and coding
     " ................................................................... Cursorline
     nmap <silent><F8>      :ToggleCursorline<CR>
     imap <silent><F8> <C-o>:ToggleCursorline<CR>
+    " ................................................................... Cursorword
+    nmap <silent><F5>      :ToggleCursorword<CR>
+    imap <silent><F5> <C-o>:ToggleCursorword<CR>
     " ............................................................... Column margins
     nmap <silent><Bar> :ToggleColumn<CR>
     " .......................................................... Line wrap highlight
