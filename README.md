@@ -1,7 +1,23 @@
 # vim-duochrome
 
 more than just a colorscheme (though you can copy the
-colors/duochrome.vim file to your colors folder for just that)
+colors/duochrome.vim file to your colors folder for just that), feature
+set works best with Gvim
+
+## features
+
+- auto-centering of text area within window
+- auto-hyperfocusing on insert mode
+- auto-fontsize for code and markdown
+- minimalist dynamic statusline content (name + state + col/%/wordcount)
+- toggle cursorline (dfm, highlight, underline)
+- toggle breakchar (and line highlight)
+- toggle line wrap (disable textwidth)
+- toggle relative number
+- toggle column ruler (cursor, fixed)
+- toggle expanded statusline (path + tag/atom + utf-8 code)
+- toggle background (light, dark)
+- toggle fontsize (code, prose)
 
 ## dependencies
 
@@ -12,6 +28,8 @@ colors/duochrome.vim file to your colors folder for just that)
 
     Plug 'itchyny/vim-cursorword'          " word highlighting
     Plug 'nathanaelkane/vim-indent-guides' " colourized indent columns
+    Plug 'majutsushi/tagbar'               " ctags
+    Plug 'lvht/tagbar-markdown'            " markdown for tagbar
 
 ## configuration
 
