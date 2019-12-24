@@ -6,6 +6,14 @@ set works best with Gvim
 
 ![DuoChrome](/screenshots/duochrome.jpg)
 
+## purpose
+
+create a colorscheme that not only displays a minimalist
+distraction free palette but [dynamically
+configures](http://thedarnedestthing.com/duochrome%20gym) the vim
+environment to provide a distraction free workflow for concentrating on
+writing and coding
+
 ## features
 
 - auto-centering of text area within window
@@ -107,3 +115,5 @@ set works best with Gvim
 
 - user defineable delay timings for gui refreshes
 - handling of unavailable optional plugin dependencies 
+- update [vim-colors-duochrome](https://github.com/sdothum/vim-colors-duochrome) with the dark and diff colorschemes
+
