@@ -252,7 +252,7 @@ M imap <silent><F11> <C-o>:Refresh<CR>
 " .............................................................. Balance margins
 command! Margins silent! call ui#Margins()
 
-" ................................................................ Set font size
+" ............................................................. Switch font size
 command! -nargs=1 Font silent! call ui#Font(<f-args>)
 
 " prose font is by (writing preference) default set 1px larger than code font
