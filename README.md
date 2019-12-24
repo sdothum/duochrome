@@ -24,7 +24,7 @@ colors/duochrome.vim file to your colors folder for just that)
 
     " ........................................................................ Debug
     nnoremap <silent><S-F10> :let g:trace = !g:trace<CR>
-    ^ 
+ 
     " Behaviour ____________________________________________________________________
     " ................................................................... Toggle gui
     nnoremap <silent><S-F12>      :ToggleGui<CR>
@@ -34,7 +34,7 @@ colors/duochrome.vim file to your colors folder for just that)
     nnoremap <silent><F12>      :RedrawGui<CR>
     inoremap <silent><F12> <C-o>:RedrawGui<CR>
     vnoremap <silent><F12> :<C-u>RedrawGui<CR>
-    ^ 
+ 
     " Look _________________________________________________________________________
     " ................................................................... Cursorline
     nmap <silent><F8>      :ToggleCursorline<CR>
@@ -44,12 +44,12 @@ colors/duochrome.vim file to your colors folder for just that)
     " .......................................................... Line wrap highlight
     nmap <silent><S-F8>      :ToggleBreak<CR>
     imap <silent><S-F8> <C-o>:ToggleBreak<CR>
-    ^ 
+ 
     " Theme ________________________________________________________________________
     " ................................................................ Switch colour
     nmap <silent><F9>      :LiteSwitch<CR>
     imap <silent><F9> <C-o>:LiteSwitch<CR>
-    ^ 
+ 
     " Distraction free mode ________________________________________________________
     " .................................................................... View mode
     nmap <silent><S-F11>      :ToggleProof<CR>
@@ -59,13 +59,13 @@ colors/duochrome.vim file to your colors folder for just that)
     " .................................................... Toggle statusline details
     nmap <silent><F7>        :ToggleInfo<CR>
     imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
-    ^ 
+ 
     " Format _______________________________________________________________________
     " ..................................................................... Filetype
     nmap <leader>F :Filetype<Space>
     " .................................................................... Line wrap
     nmap <silent><leader><CR> :ToggleWrap<CR>
-    ^ 
+ 
     " Screen _______________________________________________________________________
     " ...................................................................... Refresh
     nmap <silent><F11>      :Refresh<CR>
@@ -73,7 +73,7 @@ colors/duochrome.vim file to your colors folder for just that)
     " ............................................................. Switch font size
     nmap <silent><S-F9>      :Font !g:fonttype<CR>
     imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
-    ^ 
+ 
     " Statusline ___________________________________________________________________
     " .................................................................. Information
     nmap <silent><S-F7>      :let g:detail = !g:detail<CR>
