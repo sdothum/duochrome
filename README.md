@@ -57,8 +57,8 @@ colors/duochrome.vim file to your colors folder for just that)
     " ................................................................. Line numbers
     nmap <silent># :ToggleNumber<CR>
     " .................................................... Toggle statusline details
-    nmap <silent><F7>        :ToggleInfo<CR>
-    imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
+    nmap <silent><F7>      :ToggleInfo<CR>
+    imap <silent><F7> <C-o>:ToggleInfo Prose()<CR>
  
     " Format _______________________________________________________________________
     " ..................................................................... Filetype
