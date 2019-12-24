@@ -101,4 +101,7 @@ set works best with Gvim
     " ................................................................. Syntax group
     nnoremap <silent><F10> :Atom<CR>
 
+## todo considerations
 
+- user defineable delay timings for gui refreshes
+- handling of unavailable optional plugin dependencies 
