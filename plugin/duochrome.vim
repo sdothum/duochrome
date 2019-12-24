@@ -217,8 +217,8 @@ command! ShowInfo silent! call ui#ShowInfo()
 " .................................................... Toggle statusline details
 command! -nargs=? -bar ToggleInfo silent! call ui#ToggleInfo(<f-args>)
 
-M nmap <silent><F7>        :ToggleInfo<CR>
-M imap <silent><F7>   <C-o>:ToggleInfo Prose()<CR>
+M nmap <silent><F7>      :ToggleInfo<CR>
+M imap <silent><F7> <C-o>:ToggleInfo Prose()<CR>
 
 " show info+sleep in balanced diff windows
 autocmd duochrome VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
