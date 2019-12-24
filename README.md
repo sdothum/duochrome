@@ -1,18 +1,17 @@
 # vim-duochrome
 
 more than just a distraction free colorscheme (though you can copy the
-colors/duochrome.vim file to your colors folder for just that), feature
-set works best with Gvim
+colors/duochrome.vim file to your colors folder for just that)..
 
 ![DuoChrome](/screenshots/duochrome.jpg)
 
 ## purpose
 
-create a colorscheme that not only displays a minimalist
-distraction free palette but [dynamically
+create a colorscheme that not only displays a minimalist distraction
+free palette but [dynamically
 configures](http://thedarnedestthing.com/duochrome%20gym) the vim
-environment to provide a distraction free workflow for concentrating on
-writing and coding
+environment (feature set works best with Gvim) to provide a distraction
+free workflow for concentrating on writing and coding
 
 ## features
 
