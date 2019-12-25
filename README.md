@@ -117,5 +117,7 @@ free workflow for concentrating on writing and coding
 
 - user defineable delay timings for gui refreshes
 - handling of unavailable optional plugin dependencies 
-- update [vim-colors-duochrome](https://github.com/sdothum/vim-colors-duochrome) with the dark and diff colorschemes
+- update
+[vim-colors-duochrome](https://github.com/sdothum/vim-colors-duochrome)
+with the dark and diff colorschemes as separate colorscheme only plugin
 
