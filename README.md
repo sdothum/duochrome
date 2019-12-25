@@ -15,7 +15,7 @@ free workflow for concentrating on writing and coding
 
 ## features
 
-- auto-centering of text area within window
+- auto-centering of text area within window (window width and textwidth dependent)
 - auto-hyperfocusing on insert mode
 - auto-fontsize for code and markdown
 - minimalist dynamic statusline content (name + state + col/%/wordcount)
