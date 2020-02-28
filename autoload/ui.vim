@@ -106,8 +106,6 @@ function! ui#Margins()
 endfunction
 
 " ................................................................ Set font size
-let g:fonttype = -1  " current font (0) source (1) prose, force setting
-
 " adjust font sizes for various gpu's/displays, liteDFM offsets to fit screens
 function! ui#Font(type)
   Trace ui:Font()

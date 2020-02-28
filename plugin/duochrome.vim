@@ -73,13 +73,13 @@ endfunction
 M nnoremap <silent><S-F10> :let g:trace = !g:trace<CR>
 
 " .................................................................. Debug trace
-command! -nargs=1 Trace call lib#trace(<f-args>)
+command! -nargs=1      Trace   call lib#trace(<f-args>)
 
 " ........................................................... Error message trap
-command! -nargs=1 Quietly call lib#Quietly(<f-args>)
+command! -nargs=1      Quietly call lib#Quietly(<f-args>)
 
 " ........................................................ State change notifier
-command! -nargs=1 Notify call lib#Notify(<f-args>)
+command! -nargs=1      Notify  call lib#Notify(<f-args>)
 
 " ............................................................. GUI delay window
 command! -nargs=? -bar WaitFor call lib#WaitFor(<f-args>)
@@ -134,7 +134,7 @@ set colorcolumn=0  " highlight column
 M nmap <silent><Bar> :ToggleColumn<CR>
 
 " .......................................................... Line wrap highlight
-command! ShowBreak silent! call gui#ShowBreak()
+command!          ShowBreak   silent! call gui#ShowBreak()
 command! -nargs=? ToggleBreak silent! call gui#ToggleBreak(<f-args>)
 
 M nmap <silent><S-F8>      :ToggleBreak<CR>
@@ -169,7 +169,7 @@ M nmap <silent><F9>      :LiteSwitch<CR>
 M imap <silent><F9> <C-o>:LiteSwitch<CR>
 
 " ................................................................ Single window
-command! StatusLine silent! call theme#StatusLine()
+command!      StatusLine  silent! call theme#StatusLine()
 
 " ................................................................ Split windows
 command! -bar SplitColors silent! call theme#SplitColors()
@@ -218,7 +218,7 @@ command! ToggleNumber silent! call ui#ToggleNumber()
 M nmap <silent># :ToggleNumber<CR>
 
 " .............................................................. Show statusline
-command! ShowInfo silent! call ui#ShowInfo()
+command!               ShowInfo   silent! call ui#ShowInfo()
 
 " .................................................... Toggle statusline details
 command! -nargs=? -bar ToggleInfo silent! call ui#ToggleInfo(<f-args>)
@@ -259,6 +259,8 @@ M imap <silent><F11> <C-o>:Refresh<CR>
 command! Margins silent! call ui#Margins()
 
 " ............................................................. Switch font size
+let g:fonttype = -1  " current font (0) source (1) prose, force setting
+
 command! -nargs=1 Font silent! call ui#Font(<f-args>)
 
 " prose font is by (writing preference) default set 1px larger than code font

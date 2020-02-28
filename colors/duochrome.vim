@@ -31,7 +31,7 @@ if !exists('s:duochrome') | let s:duochrome = 1
   if empty($DISPLAY) | let s:black = s:BLACK                               " hide numbers and fold column in console
   else               | let s:black = { 'gui': '#263238', 'cterm': '235' }  " material design
   endif
-  let s:subtle_black               = { 'gui': '#37474f', 'cterm': '237' }  " ..
+  let s:subtle_black               = { 'gui': '#37474f', 'cterm': '236' }  " ..
   let s:light_black                = { 'gui': '#455a64', 'cterm': '239' }  " ..
   let s:lighter_black              = { 'gui': '#546e7a', 'cterm': '241' }  " ..
   let s:medium_gray                = { 'gui': '#607d8b', 'cterm': '243' }  " ..
@@ -106,6 +106,7 @@ if s:background != &background | let s:background = &background
   let s:statusline       = s:b(s:subtle_white,  s:subtle_black)
   let s:spell            = s:b(s:teal_bg,       s:subtle_black)
   let s:warning          = s:b(s:light_yellow,  s:dark_yellow)
+  let s:ctermbg          = s:b(s:WHITE,         s:subtle_black)  " fzf term window uses ctermbg
   " export notational-fzf-vim-duochrome path colors
   if exists('g:nv_search_paths')
     call s:x(s:green, 'path')  " see patched shorten_path_for_notational_fzf.py
@@ -374,10 +375,10 @@ hi! link GitGutterChangeDelete     SignifyLineAdd
 hi! link SneakScope                Cursor
 
 " fzf
-" let $FZF_DEFAULT_OPTS = '--reverse'
-call s:h('fzf1',                   { 'fg': s:bg })  " hide bottom fzf window identifier
+call s:h('fzf1',                   { 'fg': s:bg })       " hide bottom fzf window identifier
 call s:h('fzf2',                   { 'fg': s:bg })
 call s:h('fzf3',                   { 'fg': s:bg })
+call s:h('fzf_bg',                 { 'bg': s:ctermbg })  " fzf term window uses ctermbg
 
 " .......................................................................... EOF
 " hide tilde
