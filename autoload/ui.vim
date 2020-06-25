@@ -86,12 +86,14 @@ endfunction
 function! ui#Refresh()
   Trace ui:Refresh()
   if PluginWindow() | return | endif 
-  let l:status     = &laststatus
+  let l:status    = &laststatus
   Layout   
   let &laststatus = l:status
 endfunction
 
 " .............................................................. Balance margins
+let s:offset = 8  " maximum margin offset left for code (kludge to visually center balance lines > &textwidth)
+
 " balance left right margins with font size changes (and window resizing)
 function! ui#Margins()
   Trace ui:Margin
@@ -99,7 +101,8 @@ function! ui#Margins()
     setlocal nonumber
     setlocal foldcolumn=0
   else
-    let g:lite_dfm_left_offset = max([1, min([22, (&columns - &textwidth - (Prose() ? 0 : 4)) / 2])])  " account for code linenr <space> text
+    " let g:lite_dfm_left_offset = max([1, min([22, (&columns - &textwidth - 4) / 2])])  " account for code linenr <space> text
+    let g:lite_dfm_left_offset = max([1, min([22, max([0, (&columns - &textwidth - (Prose() ? 4 : 4 + s:offset * 2))]) / 2])])  " account for code linenr <space> text
     Quietly LiteDFM
     ShowInfo
   endif 
@@ -116,7 +119,7 @@ function! ui#Font(type)
     let l:size = system('fontsize')
     let l:size = l:type ? l:size + 1 : l:size + g:readability
     " current vim release causes prompt on font change first time around (..?)
-    execute 'set guifont=' . (Prose() ? g:duochrom_font[1] : g:duochrom_font[0]) . '\ ' . l:size
+    execute 'set guifont=' . (Prose() ? g:duochrome_font[1] : g:duochrome_font[0]) . '\ ' . l:size
     if !g:fonttype | RedrawGui | endif  " refresh to window fill on small font
     set laststatus=2                    " turn on statusline
   endif

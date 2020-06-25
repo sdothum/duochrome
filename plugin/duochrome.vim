@@ -183,10 +183,10 @@ autocmd duochrome WinEnter,TerminalOpen                      * SplitColors
 
 " ......................................................................... Font
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
-if !exists('g:duochrom_font')
+if !exists('g:duochrome_font')
 " ───────────────────────────
-  let s:mono          = g:mono ? '-mono' : ''                                " font name extension
-  let g:duochrom_font = ['Iosevka' . s:mono, 'Iosevka' . '-proof' . s:mono]  " family [code, prose]
+  let s:mono           = g:mono ? '-mono' : ''                                " font name extension
+  let g:duochrome_font = ['Iosevka' . s:mono, 'Iosevka' . '-proof' . s:mono]  " family [code, prose]
 endif
 
 " .......................................................... Syntax highlighting
@@ -282,7 +282,7 @@ if !exists('g:duochrome_icon')
 " ────────────────────────────
   if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', 'x', '^']  " console font
   elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
-  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
   endif
 endif
 

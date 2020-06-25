@@ -42,7 +42,7 @@ free workflow for concentrating on writing and coding
 
 ## configuration
 
-    let g:duochrom_font  = ['<code font family>', '<prose font family>']
+    let g:duochrome_font = ['<code font family>', '<prose font family>']
     let g:duochrome_icon = ['<unmodified (normal mode)>', '<unmodifiable>', '<modified>', '<inactive (window)>', '<insert mode>']
 
     let g:duochrome_map = 1  " (0) user mappings (1) duochrome mappings
