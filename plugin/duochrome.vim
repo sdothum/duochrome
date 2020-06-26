@@ -282,7 +282,7 @@ if !exists('g:duochrome_icon')
 " ────────────────────────────
   if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', 'x', '^']  " console font
   elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
-  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
   endif
 endif
 
