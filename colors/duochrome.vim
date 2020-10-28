@@ -18,6 +18,7 @@ if !exists('g:duochrome_cursorline') | let g:duochrome_cursorline = 0 | endif  "
 " ──────────────────────────────────
 if !exists('g:duochrome_insert')     | let g:duochrome_insert     = 0 | endif  " mode (0) normal (1) insert
 if !exists('g:duochrome_markdown')   | let g:duochrome_markdown   = 0 | endif  " source (0) code (1) markdown
+if !exists('g:duochrome_matchup')    | let g:duochrome_matchup    = 0 | endif  " style (0) block (1) text
 if !exists('g:duochrome_relative')   | let g:duochrome_relative   = 0 | endif  " linenr (0) norelative (1) relative
 if !exists('g:duochrome_ruler')      | let g:duochrome_ruler      = 0 | endif  " column (0) off (1) cursor (2) fixed
 if !exists('g:duochrome_split')      | let g:duochrome_split      = 0 | endif  " windows (0) single (1) split
@@ -59,6 +60,7 @@ if !exists('s:duochrome') | let s:duochrome = 1
   let s:blue_bg                    = { 'gui': '#dde4f2', 'cterm': '153' }  " flatwhite
   let s:green_bg                   = { 'gui': '#525643', 'cterm': '58'  }  " flatwhite
   let s:orange_bg                  = { 'gui': '#f7e0c3', 'cterm': '223' }  " flatwhite
+  let s:red_bg                     = { 'gui': '#e32791', 'cterm': '200' }  " colors-off
   let s:teal_bg                    = { 'gui': '#d2ebe3', 'cterm': '79'  }  " flatwhite
   let s:iawriter                   = { 'gui': '#20fccf', 'cterm': '51'  }  " ia writer cursor
 endif
@@ -96,7 +98,7 @@ if s:background != &background | let s:background = &background
   let s:cursor_line      = s:b(s:orange_bg,     s:green_bg)
   let s:statement        = s:b(s:subtle_black,  s:subtle_white)
   let s:constant         = s:b(s:dark_cyan,     s:light_cyan)
-  let s:comment          = s:b(s:dark_yellow,   s:dark_green)
+  let s:comment          = s:b(s:dark_yellow,   s:light_green)
   let s:selection        = s:b(s:light_yellow,  s:dark_yellow)
   let s:selection_fg     = s:b(s:white,         s:black)
   let s:visual           = s:b(s:light_blue,    s:lighter_black)
@@ -104,6 +106,7 @@ if s:background != &background | let s:background = &background
   let s:column           = s:b(s:orange_bg,     s:light_black)
   let s:gutter           = s:b(s:light_blue,    s:dark_blue)
   let s:statusline       = s:b(s:subtle_white,  s:subtle_black)
+  let s:search           = s:b(s:teal_bg,       s:dark_cyan)
   let s:spell            = s:b(s:teal_bg,       s:subtle_black)
   let s:warning          = s:b(s:light_yellow,  s:dark_yellow)
   let s:ctermbg          = s:b(s:WHITE,         s:subtle_black)  " fzf term window uses ctermbg
@@ -220,7 +223,7 @@ hi! link ModeMsg                   MoreMsg
 
 " .................................................................... Highlight
 " search
-call s:h('Search',                 { 'fg': s:selection_fg, 'bg': s:red })
+call s:h('Search',                 { 'fg': s:statement, 'bg': s:search })
 call s:h('IncSearch',              { 'fg': s:BLACK, 'bg': s:iawriter })
 
 " visual
@@ -296,9 +299,6 @@ hi! link TabLine                   Normal
 hi! link TabLineSel                Keyword
 hi! link TabLineFill               Normal
 
-" matchparen
-call s:h('MatchParen',             { 'fg': s:white, 'bg': s:red })
-
 " ..................................................................... Filetype
 " html
 call s:h('htmlBold',               { 'fg': s:constant, 'gui': 'bold' })
@@ -371,6 +371,11 @@ hi! link GitGutterChange           SignifyLineAdd
 hi! link GitGutterChangeDelete     SignifyLineAdd
 
 " ....................................................................... Plugin
+" vim-matchup
+if g:duochrome_matchup             | call s:h('MatchParen', { 'fg': s:red, 'bg': s:bg, 'gui': 'bold' })
+else                               | call s:h('MatchParen', { 'fg': s:white, 'bg': s:red_bg })
+endif
+
 " sneak
 hi! link SneakScope                Cursor
 

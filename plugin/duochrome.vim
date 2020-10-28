@@ -118,8 +118,8 @@ autocmd duochrome CursorHold * echo
 " ................................................................... Cursorline
 command! ToggleCursorline silent! call gui#ToggleCursorline()
 
-M nmap <silent><F8>      :ToggleCursorline<CR>
-M imap <silent><F8> <C-o>:ToggleCursorline<CR>
+M nmap <silent><F6>      :ToggleCursorline<CR>
+M imap <silent><F6> <C-o>:ToggleCursorline<CR>
 
 " ................................................................... Cursorword
 command! ToggleCursorword silent! call gui#ToggleCursorword()
@@ -137,8 +137,8 @@ M nmap <silent><Bar> :ToggleColumn<CR>
 command!          ShowBreak   silent! call gui#ShowBreak()
 command! -nargs=? ToggleBreak silent! call gui#ToggleBreak(<f-args>)
 
-M nmap <silent><S-F8>      :ToggleBreak<CR>
-M imap <silent><S-F8> <C-o>:ToggleBreak<CR>
+M nmap <silent><S-F6>      :ToggleBreak<CR>
+M imap <silent><S-F6> <C-o>:ToggleBreak<CR>
 
 " ................................................................. Line numbers
 set number
@@ -165,8 +165,8 @@ autocmd duochrome VimEnter,VimResized,FocusGained * WaitFor | Background
 " ................................................................ Switch colour
 command! LiteSwitch silent! call theme#LiteSwitch()
 
-M nmap <silent><F9>      :LiteSwitch<CR>
-M imap <silent><F9> <C-o>:LiteSwitch<CR>
+M nmap <silent><F7>      :LiteSwitch<CR>
+M imap <silent><F7> <C-o>:LiteSwitch<CR>
 
 " ................................................................ Single window
 command!      StatusLine  silent! call theme#StatusLine()
@@ -223,8 +223,8 @@ command!               ShowInfo   silent! call ui#ShowInfo()
 " .................................................... Toggle statusline details
 command! -nargs=? -bar ToggleInfo silent! call ui#ToggleInfo(<f-args>)
 
-M nmap <silent><F7>      :ToggleInfo<CR>
-M imap <silent><F7> <C-o>:ToggleInfo Prose()<CR>
+M nmap <silent><F8>      :ToggleInfo<CR>
+M imap <silent><F8> <C-o>:ToggleInfo Prose()<CR>
 
 " show info+sleep in balanced diff windows
 autocmd duochrome VimEnter * if &diff | ToggleInfo | WaitFor | execute "normal! \<C-w>=" | endif
@@ -264,8 +264,8 @@ let g:fonttype = -1  " current font (0) source (1) prose, force setting
 command! -nargs=1 Font silent! call ui#Font(<f-args>)
 
 " prose font is by (writing preference) default set 1px larger than code font
-M nmap <silent><S-F9>      :Font !g:fonttype<CR>
-M imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
+M nmap <silent><S-F7>      :Font !g:fonttype<CR>
+M imap <silent><S-F7> <C-o>:Font !g:fonttype<CR>
 
 " Statusline ___________________________________________________________________
 
@@ -287,11 +287,11 @@ if !exists('g:duochrome_icon')
 endif
 
 " .................................................................. Information
-let g:detail = 0  " default expanded detail (0) tag (1) atom, see F7 map
+let g:detail = 0  " default expanded detail (0) tag (1) atom, see F8 map
 
 " toggle tag / line details
-M nmap <silent><S-F7>      :let g:detail = !g:detail<CR>
-M imap <silent><S-F7> <C-o>:let g:detail = !g:detail<CR>
+M nmap <silent><S-F8>      :let g:detail = !g:detail<CR>
+M imap <silent><S-F8> <C-o>:let g:detail = !g:detail<CR>
 
 " .............................................................. Column position
 let g:show_column = 0  " statusline current column

@@ -64,21 +64,21 @@ free workflow for concentrating on writing and coding
  
     " Look _________________________________________________________________________
     " ................................................................... Cursorline
-    nmap <silent><F8>      :ToggleCursorline<CR>
-    imap <silent><F8> <C-o>:ToggleCursorline<CR>
+    nmap <silent><F6>      :ToggleCursorline<CR>
+    imap <silent><F6> <C-o>:ToggleCursorline<CR>
     " ................................................................... Cursorword
     nmap <silent><F5>      :ToggleCursorword<CR>
     imap <silent><F5> <C-o>:ToggleCursorword<CR>
     " ............................................................... Column margins
     nmap <silent><Bar> :ToggleColumn<CR>
     " .......................................................... Line wrap highlight
-    nmap <silent><S-F8>      :ToggleBreak<CR>
-    imap <silent><S-F8> <C-o>:ToggleBreak<CR>
+    nmap <silent><S-F6>      :ToggleBreak<CR>
+    imap <silent><S-F6> <C-o>:ToggleBreak<CR>
  
     " Theme ________________________________________________________________________
     " ................................................................ Switch colour
-    nmap <silent><F9>      :LiteSwitch<CR>
-    imap <silent><F9> <C-o>:LiteSwitch<CR>
+    nmap <silent><F7>      :LiteSwitch<CR>
+    imap <silent><F7> <C-o>:LiteSwitch<CR>
  
     " Distraction free mode ________________________________________________________
     " .................................................................... View mode
@@ -87,8 +87,8 @@ free workflow for concentrating on writing and coding
     " ................................................................. Line numbers
     nmap <silent># :ToggleNumber<CR>
     " .................................................... Toggle statusline details
-    nmap <silent><F7>      :ToggleInfo<CR>
-    imap <silent><F7> <C-o>:ToggleInfo Prose()<CR>
+    nmap <silent><F8>      :ToggleInfo<CR>
+    imap <silent><F8> <C-o>:ToggleInfo Prose()<CR>
  
     " Format _______________________________________________________________________
     " ..................................................................... Filetype
@@ -101,13 +101,13 @@ free workflow for concentrating on writing and coding
     nmap <silent><F11>      :Refresh<CR>
     imap <silent><F11> <C-o>:Refresh<CR>
     " ............................................................. Switch font size
-    nmap <silent><S-F9>      :Font !g:fonttype<CR>
-    imap <silent><S-F9> <C-o>:Font !g:fonttype<CR>
+    nmap <silent><S-F7>      :Font !g:fonttype<CR>
+    imap <silent><S-F7> <C-o>:Font !g:fonttype<CR>
  
     " Statusline ___________________________________________________________________
     " .................................................................. Information
-    nmap <silent><S-F7>      :let g:detail = !g:detail<CR>
-    imap <silent><S-F7> <C-o>:let g:detail = !g:detail<CR>
+    nmap <silent><S-F8>      :let g:detail = !g:detail<CR>
+    imap <silent><S-F8> <C-o>:let g:detail = !g:detail<CR>
     " .............................................................. Column position
     nnoremap <silent><C-c> hl
     " ................................................................. Syntax group

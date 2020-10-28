@@ -92,24 +92,28 @@ function! ui#Refresh()
 endfunction
 
 " .............................................................. Balance margins
-let s:offset = 8  " maximum margin offset left for code (kludge to visually center balance lines > &textwidth)
 
 " balance left right margins with font size changes (and window resizing)
+function! s:centering()
+  if Prose() | return 4 | endif       " linenr width
+  let l:factor = (&columns * &columns) / (&textwidth * &textwidth)  " exponential progression
+  return 4 + 22 / max([1, l:factor])  " left margin bias for code (since lines often > &textwidth)
+endfunction
+
 function! ui#Margins()
   Trace ui:Margin
   if PluginWindow()  " flush left for plugin windows
     setlocal nonumber
     setlocal foldcolumn=0
   else
-    " let g:lite_dfm_left_offset = max([1, min([22, (&columns - &textwidth - 4) / 2])])  " account for code linenr <space> text
-    let g:lite_dfm_left_offset = max([1, min([22, max([0, (&columns - &textwidth - (Prose() ? 4 : 4 + s:offset * 2))]) / 2])])  " account for code linenr <space> text
+    let g:lite_dfm_left_offset = max([1, min([22, max([0, (&columns - &textwidth - s:centering())]) / 2])])  " account for code linenr <space> text
     Quietly LiteDFM
     ShowInfo
   endif 
 endfunction
 
 " ................................................................ Set font size
-" adjust font sizes for various gpu's/displays, liteDFM offsets to fit screens
+" adjust font sizes for various gpu's/displays, liteDFM leftshifts to fit screens
 function! ui#Font(type)
   Trace ui:Font()
   if !has('gui_running') | return | endif 
