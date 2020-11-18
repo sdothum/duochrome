@@ -58,8 +58,9 @@ if !exists('s:duochrome') | let s:duochrome = 1
   let s:light_yellow               = { 'gui': '#d5b875', 'cterm': '11'  }  " quantum
   " bg colours
   let s:blue_bg                    = { 'gui': '#dde4f2', 'cterm': '153' }  " flatwhite
-  let s:green_bg                   = { 'gui': '#525643', 'cterm': '58'  }  " flatwhite
+  let s:green_bg                   = { 'gui': '#e2e9c1', 'cterm': '192' }  " flatwhite
   let s:orange_bg                  = { 'gui': '#f7e0c3', 'cterm': '223' }  " flatwhite
+  let s:pink_bg                    = { 'gui': '#fadadd', 'cterm': '224' }
   let s:red_bg                     = { 'gui': '#e32791', 'cterm': '200' }  " colors-off
   let s:teal_bg                    = { 'gui': '#d2ebe3', 'cterm': '79'  }  " flatwhite
   let s:iawriter                   = { 'gui': '#20fccf', 'cterm': '51'  }  " ia writer cursor
@@ -106,7 +107,7 @@ if s:background != &background | let s:background = &background
   let s:column           = s:b(s:orange_bg,     s:light_black)
   let s:gutter           = s:b(s:light_blue,    s:dark_blue)
   let s:statusline       = s:b(s:subtle_white,  s:subtle_black)
-  let s:search           = s:b(s:teal_bg,       s:dark_cyan)
+  let s:search           = s:b(s:pink_bg,       s:pink_bg)
   let s:spell            = s:b(s:teal_bg,       s:subtle_black)
   let s:warning          = s:b(s:light_yellow,  s:dark_yellow)
   let s:ctermbg          = s:b(s:WHITE,         s:subtle_black)  " fzf term window uses ctermbg
@@ -223,7 +224,7 @@ hi! link ModeMsg                   MoreMsg
 
 " .................................................................... Highlight
 " search
-call s:h('Search',                 { 'fg': s:statement, 'bg': s:search })
+call s:h('Search',                 { 'fg': s:BLACK, 'bg': s:search })
 call s:h('IncSearch',              { 'fg': s:BLACK, 'bg': s:iawriter })
 
 " visual
