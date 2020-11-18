@@ -133,7 +133,7 @@ endfunction
 
 " .................................................................. Cursor/line
 " cursor
-call s:h('Cursor',                 { 'fg': s:black, 'bg': s:iawriter })                " ia writer cursor
+call s:h('Cursor',                 { 'fg': s:BLACK, 'bg': s:iawriter })                " ia writer cursor
 if empty($DISPLAY)                 | call s:h('CursorLine', { 'cterm': 'underline' })  " console
 elseif g:duochrome_insert && g:duochrome_markdown
   if g:duochrome_cursorline == 2   | call s:h('CursorLine', { 'fg': s:high_contrast, 'gui': 'underline' })
