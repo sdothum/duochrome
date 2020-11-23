@@ -73,12 +73,17 @@ endfunction
 " Screen _______________________________________________________________________
 
 " ............................................................... Screen display
+
+function! s:writing()
+  return Prose() || &filetype == 'remind'
+endfunction
+
 " initial view
 function! ui#Layout()
   Trace ui:Layout()
   if PluginWindow() || !has('gui_running') | return | endif 
   let g:duochrome_markdown = Prose()
-  Font Prose()
+  Font s:writing()
   ShowBreak
 endfunction
 
@@ -123,7 +128,7 @@ function! ui#Font(type)
     let l:size = system('fontsize')
     let l:size = l:type ? l:size + 1 : l:size + g:readability
     " current vim release causes prompt on font change first time around (..?)
-    execute 'set guifont=' . (Prose() ? g:duochrome_font[1] : g:duochrome_font[0]) . '\ ' . l:size
+    execute 'set guifont=' . (s:writing() ? g:duochrome_font[1] : g:duochrome_font[0]) . '\ ' . l:size
     if !g:fonttype | RedrawGui | endif  " refresh to window fill on small font
     set laststatus=2                    " turn on statusline
   endif
