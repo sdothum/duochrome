@@ -280,8 +280,8 @@ let g:pad = ['      ', '     ']  " statusline padding [inner, outer]
 " buffer g:duochrome_icon [0] unmodified (normal mode) [1] unmodifiable [2] modified [3] inactive (window) [4] insert mode
 if !exists('g:duochrome_icon')
 " ────────────────────────────
-  if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', 'x', '^']  " console font
-  elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
+  if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', '=', '^']  " console font
+  elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
   else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
   endif
 endif
