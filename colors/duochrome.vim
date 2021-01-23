@@ -261,7 +261,7 @@ hi! link helpHyperTextJump         String
 " statusline
 call s:h('StatusLine',             { 'bg': s:statusline, 'fg': s:norm_subtle })
 call s:h('User1',                  { 'bg': g:duochrome_split ? s:statusline : s:bg, 'fg': s:norm_subtle })
-call s:h('User2',                  { 'bg': g:duochrome_split ? s:statusline : s:bg, 'fg': s:norm_very_subtle })
+call s:h('User2',                  { 'bg': g:duochrome_split ? s:statusline : s:bg, 'fg': s:high_contrast })
 call s:h('User3',                  { 'bg': g:duochrome_split ? s:statusline : s:bg, 'fg': s:red })
 " statuslinenc
 call s:h('StatusLineNC',           { 'bg': g:duochrome_split ? s:statusline : s:bg })
