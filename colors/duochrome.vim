@@ -234,10 +234,10 @@ call s:h('VisualNOS',              { 'bg': s:bg_subtle })
 
 " diff
 if &diff
-  call s:h('DiffAdd',              { 'bg': s:statusline, 'fg': s:green })
+  call s:h('DiffAdd',              { 'bg': s:statusline, 'fg': s:green, 'gui': 'bold' })
   call s:h('DiffDelete',           { 'bg': s:statusline, 'fg': s:red })
   call s:h('DiffChange',           { 'bg': s:statusline, 'fg': s:yellow })
-  call s:h('DiffText',             { 'bg': s:statusline, 'fg': s:constant })
+  call s:h('DiffText',             { 'bg': s:statusline, 'fg': s:constant, 'gui': 'bold' })
 else
   call s:h('DiffAdd',              { 'fg': s:green })
   call s:h('DiffDelete',           { 'fg': s:red })
