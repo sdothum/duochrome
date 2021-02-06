@@ -182,7 +182,7 @@ hi! link Debug                     Special
 hi! link PreProc                   Normal
 hi! link Define                    PreProc
 hi! link Macro                     PreProc
-hi! link Precondit                 comment  " highlight code sections
+call s:h('Precondit',           { 'fg': s:red })  " highlight code sections
 
 " operator
 call s:h('Noise',                  { 'fg': s:norm_subtle, 'gui': 'none' })
