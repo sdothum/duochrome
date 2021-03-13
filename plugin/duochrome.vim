@@ -17,7 +17,7 @@ if !exists('g:duochrome_cursorline') | let g:duochrome_cursorline = !empty(glob(
 let g:duochrome_cursorline = !empty(glob('~/.session/vim:underline')) ? 2 : g:duochrome_cursorline
 let g:cursorword           = !empty(glob('~/.session/vim:cursorword'))   " highlighting
 let g:dark                 = !empty(glob('~/.session/vim:dark'))         " background
-let g:mono                 = !empty(glob('~/.session/vim:mono'))         " single width utf-8
+let g:double               = !empty(glob('~/.session/vim:double'))       " double width utf-8
 let g:readability          = !empty(glob('~/.session/vim:readability'))  " fontsize
 let g:trace                = !empty(glob('~/.session/vim:trace'))        " debug
 
@@ -185,8 +185,8 @@ autocmd duochrome WinEnter,TerminalOpen                      * SplitColors
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
 if !exists('g:duochrome_font')
 " ───────────────────────────
-  let s:mono           = g:mono ? '-mono' : ''                                " font name extension
-  let g:duochrome_font = ['Iosevka' . s:mono, 'Iosevka' . '-proof' . s:mono]  " family [code, prose]
+  let s:double         = g:double ? '-double' : ''                                " font name extension
+  let g:duochrome_font = ['Iosevka' . s:double, 'Iosevka-proof' . s:double . '\ Regular']  " family [code, prose]
 endif
 
 " .......................................................... Syntax highlighting
@@ -281,8 +281,8 @@ let g:pad = ['      ', '     ']  " statusline padding [inner, outer]
 if !exists('g:duochrome_icon')
 " ────────────────────────────
   if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', '=', '^']  " console font
-  elseif g:mono      | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 mono symbols
-  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+  elseif g:double    | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 single width symbols
   endif
 endif
 
