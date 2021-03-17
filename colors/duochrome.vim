@@ -108,7 +108,7 @@ if s:background != &background | let s:background = &background
   let s:gutter           = s:b(s:light_blue,    s:dark_blue)
   let s:statusline       = s:b(s:subtle_white,  s:subtle_black)
   let s:search           = s:b(s:pink_bg,       s:pink_bg)
-  let s:spell            = s:b(s:teal_bg,       s:subtle_black)
+  let s:spell            = s:b(s:pink_bg,       s:subtle_black)
   let s:warning          = s:b(s:light_yellow,  s:dark_yellow)
   let s:ctermbg          = s:b(s:WHITE,         s:subtle_black)  " fzf term window uses ctermbg
   " export notational-fzf-vim-duochrome path colors
