@@ -97,7 +97,7 @@ if s:background != &background | let s:background = &background
   let s:purple           = s:b(s:dark_purple,   s:light_purple)
   let s:yellow           = s:b(s:dark_yellow,   s:light_yellow)
   let s:cursor_line      = s:b(s:orange_bg,     s:green_bg)
-  let s:statement        = s:b(s:subtle_black,  s:subtle_white)
+  let s:statement        = s:b(s:subtle_black,  s:white)
   let s:constant         = s:b(s:dark_cyan,     s:light_cyan)
   let s:comment          = s:b(s:dark_yellow,   s:light_green)
   let s:selection        = s:b(s:light_yellow,  s:dark_yellow)
@@ -182,7 +182,7 @@ hi! link Debug                     Special
 hi! link PreProc                   Normal
 hi! link Define                    PreProc
 hi! link Macro                     PreProc
-call s:h('Precondit',           { 'fg': s:red })  " highlight code sections
+call s:h('Precondit',              { 'fg': s:red })  " highlight code sections
 
 " operator
 call s:h('Noise',                  { 'fg': s:norm_subtle, 'gui': 'none' })

@@ -19,6 +19,7 @@ let g:cursorword           = !empty(glob('~/.session/vim:cursorword'))   " highl
 let g:dark                 = !empty(glob('~/.session/vim:dark'))         " background
 let g:double               = !empty(glob('~/.session/vim:double'))       " double width utf-8
 let g:readability          = !empty(glob('~/.session/vim:readability'))  " fontsize
+let g:typeface             = !empty(glob('~/.session/vim:typeface'))     " custom iosevka typeface
 let g:trace                = !empty(glob('~/.session/vim:trace'))        " debug
 
 if &diff | let g:duochrome_cursorline = g:duochrome_cursorline ? g:duochrome_cursorline : 2 | endif  " underline default
@@ -185,8 +186,9 @@ autocmd duochrome WinEnter,TerminalOpen                      * SplitColors
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
 if !exists('g:duochrome_font')
 " ───────────────────────────
-  let s:double         = g:double ? '-double' : ''                                " font name extension
-  let g:duochrome_font = ['Iosevka' . s:double, 'Iosevka-proof' . s:double . '\ Regular']  " family [code, prose]
+  let s:double         = g:double ? '-double' : ''  " font name extension
+  let s:typeface       = g:typeface ? '-' . system('echo -n $(cat ~/.session/vim:typeface)') : ''  " lose <return> from cat
+  let g:duochrome_font = ['Iosevka' . s:typeface . s:double, 'Iosevka' . s:typeface . '-proof' . s:double . '\ Regular']  " family [code, prose]
 endif
 
 " .......................................................... Syntax highlighting
