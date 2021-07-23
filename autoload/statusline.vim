@@ -115,7 +115,7 @@ endfunction
 " [path] .. filename state position .. [details]
 function! statusline#Statusline(expanded)
   try  " trap snippet insertion interruption
-    if Prose() && g:duochrome_insert
+    if Prose() && &filetype != 'steno' && g:duochrome_insert  " steno hides statusline content
       return s:escape(s:attn() . Leader('') . '  %{UnModified(0)}%1*')
     else
       let l:name     = '%1*%{Name()}' . g:pad[0]

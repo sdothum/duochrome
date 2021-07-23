@@ -126,7 +126,7 @@ function! ui#Font(type)
   execute 'let l:type = ' . a:type
   if g:fonttype != l:type | let g:fonttype = l:type
     let l:size = system('fontsize')
-    let l:size = l:type ? l:size + 1 : l:size + g:readability
+    let l:size = l:type ? l:size + 2 : l:size + g:readability
     " current vim release causes prompt on font change first time around (..?)
     execute 'set guifont=' . (s:writing() ? g:duochrome_font[1] : g:duochrome_font[0]) . '\ ' . l:size
     if !g:fonttype | RedrawGui | endif  " refresh to window fill on small font

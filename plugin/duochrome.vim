@@ -40,7 +40,7 @@ command! -nargs=? M call <SID>m(<f-args>)
 " ............................................................. Prose filestypes
 " distraction free filetyes
 function! Prose()
-  return &filetype =~ 'draft\|html\|mail\|markdown\|note\|wiki'
+  return &filetype =~ 'draft\|html\|mail\|markdown\|note\|steno\|wiki'
 endfunction
 
 function! Markdown()
