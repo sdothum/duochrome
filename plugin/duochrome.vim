@@ -18,7 +18,8 @@ let g:duochrome_cursorline = !empty(glob('~/.session/vim:underline')) ? 2 : g:du
 let g:cursorword           = !empty(glob('~/.session/vim:cursorword'))   " highlighting
 let g:dark                 = !empty(glob('~/.session/vim:dark'))         " background
 let g:double               = !empty(glob('~/.session/vim:double'))       " double width utf-8
-let g:readability          = !empty(glob('~/.session/vim:readability'))  " fontsize
+let g:fontsize             = !empty(glob('~/.session/vim:fontsize'))     " system fontsize override
+let g:readability          = !empty(glob('~/.session/vim:readability'))  " fontsize increment
 let g:typeface             = !empty(glob('~/.session/vim:typeface'))     " custom iosevka typeface
 let g:trace                = !empty(glob('~/.session/vim:trace'))        " debug
 
@@ -205,8 +206,8 @@ autocmd duochrome Syntax <buffer> execute 'set syntax=' . &filetype
 " .................................................................... View mode
 command! -bar ToggleProof silent! call ui#ToggleProof()
 
-M nmap <silent><S-F11>      :ToggleProof<CR>
-M imap <silent><S-F11> <C-o>:ToggleProof<CR>
+M nmap <silent><C-F11>      :ToggleProof<CR>
+M imap <silent><C-F11> <C-o>:ToggleProof<CR>
 
 if has('gui_running')
   autocmd duochrome InsertEnter * ToggleProof | SignifyDisable
