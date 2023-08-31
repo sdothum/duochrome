@@ -30,7 +30,7 @@ if !exists('g:duochrome_map') | let g:duochrome_map = 1 | endif  " key mapping (
 " ───────────────────────────
 
 function! s:m(map)
-  if g:duochrome_map | execute a:map | endif
+	if g:duochrome_map | execute a:map | endif
 endfunction
 
 " temporary mapping macro
@@ -41,32 +41,32 @@ command! -nargs=? M call <SID>m(<f-args>)
 " ............................................................. Prose filestypes
 " distraction free filetyes
 function! Prose()
-  return &filetype =~ 'draft\|html\|mail\|markdown\|note\|steno\|wiki'
+	return &filetype =~ 'draft\|html\|mail\|markdown\|note\|steno\|wiki'
 endfunction
 
 function! Markdown()
-  return &filetype =~ 'markdown\|wiki'
+	return &filetype =~ 'markdown\|wiki'
 endfunction
 
 " .................................................................... Protected
 function! s:fzfBuffer()
-  if exists('g:fzf#vim#buffers') | return g:fzf#vim#buffers != {} " fzf trap
-  else                           | return 0
-  endif
+	if exists('g:fzf#vim#buffers') | return g:fzf#vim#buffers != {} " fzf trap
+	else                           | return 0
+	endif
 endfunction
 
 function! Protected()
-  return &filetype == 'help' || mode() == 't' || <SID>fzfBuffer()
+	return &filetype == 'help' || mode() == 't' || <SID>fzfBuffer()
 endfunction
 
 " ............................................................... Plugin windows
 " plugin buffers typically are named '[<plugin>]' or '__<plugin>__'
 function! PluginWindow()
-  return expand('%:r') =~ '^[[_].*'
+	return expand('%:r') =~ '^[[_].*'
 endfunction
 
 function! CommandWindow()
-  return expand('%p') == '[Command Line]'
+	return expand('%p') == '[Command Line]'
 endfunction
 
 " System _______________________________________________________________________
@@ -99,7 +99,7 @@ M vnoremap <silent><S-F12> :<C-u>ToggleGui<CR>
 command! -bar RedrawGui silent! ToggleGui | WaitFor 50m \| ToggleGui
 
 if has('gui_running')  " initial refresh to fill window
-  autocmd duochrome VimEnter * RedrawGui
+	autocmd duochrome VimEnter * RedrawGui
 endif
 
 M nnoremap <silent><F12>      :RedrawGui<CR>
@@ -187,9 +187,9 @@ autocmd duochrome WinEnter,TerminalOpen                      * SplitColors
 " Iosevka custom compiled, with nerd-fonts awesome patches, see make_install/iosevka
 if !exists('g:duochrome_font')
 " ───────────────────────────
-  let s:double         = g:double ? '-double' : ''  " font name extension
-  let s:typeface       = g:typeface ? '-' . system('echo -n $(cat ~/.session/vim:typeface)') : ''  " lose <return> from cat
-  let g:duochrome_font = ['Iosevka' . s:typeface . s:double, 'Iosevka' . s:typeface . '-proof' . s:double . '\ Regular']  " family [code, prose]
+	let s:double         = g:double ? '-double' : ''  " font name extension
+	let s:typeface       = g:typeface ? '-' . system('echo -n $(cat ~/.session/vim:typeface)') : ''  " lose <return> from cat
+	let g:duochrome_font = ['Iosevka' . s:typeface . s:double, 'Iosevka' . s:typeface . '-proof' . s:double . '\ Regular']  " family [code, prose]
 endif
 
 " .......................................................... Syntax highlighting
@@ -210,8 +210,8 @@ M nmap <silent><C-F11>      :ToggleProof<CR>
 M imap <silent><C-F11> <C-o>:ToggleProof<CR>
 
 if has('gui_running')
-  autocmd duochrome InsertEnter * ToggleProof | SignifyDisable
-  autocmd duochrome InsertLeave * ToggleProof | SignifyEnable
+	autocmd duochrome InsertEnter * ToggleProof | SignifyDisable
+	autocmd duochrome InsertLeave * ToggleProof | SignifyEnable
 endif
 
 " ................................................................. Line numbers
@@ -283,10 +283,10 @@ let g:pad = ['      ', '     ']  " statusline padding [inner, outer]
 " buffer g:duochrome_icon [0] unmodified (normal mode) [1] unmodifiable [2] modified [3] inactive (window) [4] insert mode
 if !exists('g:duochrome_icon')
 " ────────────────────────────
-  if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', '=', '^']  " console font
-  elseif g:double    | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
-  else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 single width symbols
-  endif
+	if empty($DISPLAY) | let g:duochrome_icon = ['•', '-', '+', '=', '^']  " console font
+	elseif g:double    | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 double width symbols
+	else               | let g:duochrome_icon = ['', '', '', '', '']  " nerd-font utf-8 single width symbols
+	endif
 endif
 
 " .................................................................. Information
